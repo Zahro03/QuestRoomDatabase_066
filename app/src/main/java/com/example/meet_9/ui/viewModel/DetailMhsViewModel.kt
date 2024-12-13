@@ -3,6 +3,7 @@ package com.example.meet_9.ui.viewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.meet_9.data.entity.Mahasiswa
 import com.example.meet_9.repository.RepositoryMhs
 import com.example.meet_9.ui.navigation.DestinasiDetail
 import kotlinx.coroutines.flow.SharingStarted
@@ -57,4 +58,23 @@ data class DetailUiState(
     val isLoading: Boolean = false,
     val isError: Boolean = false,
     val erroeMessage: String =""
-)
+){
+    val  isUiEventEmpty: Boolean
+        get() = detailUiEvent == MahasiswaEvent()
+    val isUiEventNotEmpty: Boolean
+        get() = detailUiEvent != MahasiswaEvent()
+}
+
+// Data Class untuk menampung data yang akan ditampilkan di UI
+
+//Memindahkan data dari entity ke ui
+fun Mahasiswa.toDetailUiEvent(): MahasiswaEvent{
+    return MahasiswaEvent(
+        nim = nim,
+        nama = nama,
+        jenisKelamin = jenisKelamin,
+        alamat = alamat,
+        kelas = kelas,
+        angkatan = angkatan
+    )
+}
