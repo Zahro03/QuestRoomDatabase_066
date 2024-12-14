@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -23,6 +24,7 @@ import com.example.meet_9.costumWidget.TopAppBar
 import com.example.meet_9.ui.viewModel.HomeMhsViewModel
 import com.example.meet_9.ui.viewModel.HomeUiState
 import com.example.meet_9.ui.viewModel.PenyediaViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun HomeMhsView(
@@ -81,6 +83,17 @@ fun BodyHomeMhsView(
                 contentAlignment = Alignment.Center
             ){
                 CircularProgressIndicator()
+            }
+        }
+
+        homeUiState.isError -> {
+            //Menampilkan pesan error
+            LaunchedEffect(homeUiState.errorMessage) {
+                homeUiState.errorMessage?.let {message ->
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar(message)
+                    }
+                }
             }
         }
     }
