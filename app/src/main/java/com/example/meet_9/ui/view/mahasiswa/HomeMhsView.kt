@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.meet_9.costumWidget.TopAppBar
+import com.example.meet_9.data.entity.Mahasiswa
 import com.example.meet_9.ui.viewModel.HomeMhsViewModel
 import com.example.meet_9.ui.viewModel.HomeUiState
 import com.example.meet_9.ui.viewModel.PenyediaViewModel
@@ -114,5 +115,28 @@ fun BodyHomeMhsView(
                 )
             }
         }
+
+        else -> {
+            //Menampilkan daftar Mahasiswa
+            ListMahasiswa(
+                listMhs = homeUiState.listMhs,
+                onClick ={
+                    onClick(it)
+                    println(
+                        it
+                    )
+                },
+                modifier = modifier
+            )
+        }
     }
+}
+
+@Composable
+fun ListMahasiswa(
+    listMhs: List<Mahasiswa>,
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit = { }
+){
+
 }
