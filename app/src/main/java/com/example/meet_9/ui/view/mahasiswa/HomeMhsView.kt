@@ -3,9 +3,12 @@ package com.example.meet_9.ui.view.mahasiswa
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -138,5 +141,28 @@ fun ListMahasiswa(
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit = { }
 ){
+    LazyColumn (
+        modifier = modifier
+    ){
+        items(
+            items = listMhs,
+            itemContent = {mhs ->
+                CardMhs(
+                    mhs = mhs,
+                    onClick = {onClick(mhs.nim)}
+                )
+            }
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CardMhs(
+    mhs: Mahasiswa,
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit = { }
+){
 
 }
+
