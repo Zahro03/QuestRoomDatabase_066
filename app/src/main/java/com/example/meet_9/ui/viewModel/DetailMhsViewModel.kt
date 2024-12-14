@@ -6,8 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.meet_9.data.entity.Mahasiswa
 import com.example.meet_9.repository.RepositoryMhs
 import com.example.meet_9.ui.navigation.DestinasiDetail
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -29,11 +31,15 @@ class DetailMhsViewModel (
             )
         }
         .onStart {
+            emit(DetailUiState(isLoading = true))
+            delay(600)
+        }
+        .catch {
             emit(
                 DetailUiState(
                     isLoading = false,
                     isError = true,
-                    errorMessage = it.message ?: "Terjadi Kesalahan",
+                    erroeMessage = it.message ?: "Terjadi Kesalahan",
                 )
             )
         }
@@ -45,7 +51,7 @@ class DetailMhsViewModel (
             ),
         )
     fun deleteMhs(){
-        detailUiState.value.detailUiEvent.toMahasiswaEntity().let{
+        detailUiState.value.detailUiEvent.toMahaiswaEntity().let{
             viewModelScope.launch {
                 repositoryMhs.deleteMahasiswa(it)
             }
