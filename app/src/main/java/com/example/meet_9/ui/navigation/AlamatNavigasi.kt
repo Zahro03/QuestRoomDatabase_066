@@ -1,20 +1,23 @@
 package com.example.meet_9.ui.navigation
 
 
-interface  AlamatNavigasi{
-        val  route: String
+
+interface AlamatNavigasi {
+    val route: String
 }
 
-object DestinasiHome:AlamatNavigasi{
+object DestinasiHome : AlamatNavigasi {
     override val route = "home"
 }
-object DestinasiDetail : AlamatNavigasi{
+
+object DestinasiDetail :AlamatNavigasi {
     override val route = "detail"
     const val NIM = "nim"
-    val  routesWithArg = "$route/($NIM"
+    val routesWithArg = "$route/{$NIM}"
 }
-object DestinasiUpdate:AlamatNavigasi{
+
+object DestinasiUpdate : AlamatNavigasi {
     override val route = "update"
-    const val NIM ="nim"
-    val routesWithArg = "$route/($NIM"
+    const val NIM = "nim"
+    val routesWithArg = "$route/{$NIM}"
 }
