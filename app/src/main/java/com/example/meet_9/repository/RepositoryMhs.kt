@@ -1,18 +1,26 @@
 package com.example.meet_9.repository
 
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import com.example.meet_9.data.entity.Mahasiswa
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryMhs {
-    //getAllMhs
-    fun getAllMhs(): Flow<List<Mahasiswa>>
 
-    //getMhs
-    fun getMhs(nim: String): Flow<Mahasiswa>
+    @Insert
+    suspend fun insertMhs(mahasiswa: Mahasiswa)
 
-    //deleteMhs
-    suspend fun deleteMhs(mahasiswa:Mahasiswa)
+    @Query("SELECT * FROM mahasiswa ORDER BY nama ASC")
+    fun getAllMahasiswa(): Flow<List<Mahasiswa>>
 
-    //updateMhs
-    suspend fun updateMhs(mahasiswa: Mahasiswa)
+    @Query("SELECT * FROM mahasiswa WHERE nim = :nim")
+    fun getMahasiswa(nim: String): Flow<Mahasiswa>
+
+    @Delete
+    suspend fun deleteMahasiswa(mahasiswa: Mahasiswa)
+
+    @Update
+    suspend fun updateMahasiswa(mahasiswa: Mahasiswa)
 }

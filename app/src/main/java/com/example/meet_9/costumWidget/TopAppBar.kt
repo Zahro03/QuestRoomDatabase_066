@@ -1,5 +1,3 @@
-package com.example.meet_9.costumWidget
-
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +17,7 @@ fun TopAppBar(
     onBack: () -> Unit,
     showBackButton: Boolean = true,
     judul: String,
+    modifier: Modifier,
 ) {
     Box(
         modifier = Modifier

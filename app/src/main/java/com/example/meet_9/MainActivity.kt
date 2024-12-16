@@ -1,5 +1,6 @@
 package com.example.meet_9
 
+import PengelolaHalaman
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.meet_9.ui.navigation.PengelolaHalaman
 import com.example.meet_9.ui.theme.Meet_9Theme
 
 class MainActivity : ComponentActivity() {

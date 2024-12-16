@@ -41,7 +41,7 @@ class MahasiswaViewModel (private val repositoryMhs: RepositoryMhs) : ViewModel(
             if (validateFields()) {
                 viewModelScope.launch {
                     try {
-                        repositoryMhs.insertMhs(currentEvent.toMahaiswaEntity())
+                        repositoryMhs.insertMhs(currentEvent.toMahasiswaEntity())
                         uiState = uiState.copy(
                             snackBarMessage = "Data berhasil disimpan",
                             mahasiswaEvent = MahasiswaEvent(), // Reset input Form
@@ -66,7 +66,7 @@ class MahasiswaViewModel (private val repositoryMhs: RepositoryMhs) : ViewModel(
     }
 
 //menyimpan input form ke daalam entity
-    fun MahasiswaEvent.toMahaiswaEntity(): Mahasiswa = Mahasiswa(
+    fun MahasiswaEvent.toMahasiswaEntity(): Mahasiswa = Mahasiswa(
         nim = nim,
         nama = nama,
         jenisKelamin = jenisKelamin,
